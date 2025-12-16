@@ -20,47 +20,47 @@
 15-->[androidx.core:core:1.17.0] /home/ally/.gradle/caches/8.13/transforms/6ed49b8113af8abbf5990bff8e54a278/transformed/core-1.17.0/AndroidManifest.xml:26:22-94
 16
 17    <application
-17-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:5:5-25:19
+17-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:5:5-25:19
 18        android:allowBackup="true"
-18-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:6:9-35
+18-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:6:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 19-->[androidx.core:core:1.17.0] /home/ally/.gradle/caches/8.13/transforms/6ed49b8113af8abbf5990bff8e54a278/transformed/core-1.17.0/AndroidManifest.xml:28:18-86
 20        android:dataExtractionRules="@xml/data_extraction_rules"
-20-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:7:9-65
+20-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:7:9-65
 21        android:debuggable="true"
 22        android:extractNativeLibs="false"
 23        android:fullBackupContent="@xml/backup_rules"
-23-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:8:9-54
+23-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:8:9-54
 24        android:icon="@mipmap/ic_launcher"
-24-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:9:9-43
+24-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:9:9-43
 25        android:label="@string/app_name"
-25-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:10:9-41
+25-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:10:9-41
 26        android:roundIcon="@mipmap/ic_launcher_round"
-26-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:11:9-54
+26-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:11:9-54
 27        android:supportsRtl="true"
-27-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:12:9-35
+27-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:12:9-35
 28        android:testOnly="true"
 29        android:theme="@style/Theme.XPJourney" >
-29-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:13:9-47
+29-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:13:9-47
 30        <activity
-30-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:14:9-24:20
+30-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:14:9-24:20
 31            android:name="com.example.xpjourney.MainActivity"
-31-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:15:13-41
+31-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:15:13-41
 32            android:exported="true"
-32-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:16:13-36
+32-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:16:13-36
 33            android:label="@string/app_name"
-33-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:17:13-45
+33-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:17:13-45
 34            android:theme="@style/Theme.XPJourney" >
-34-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:18:13-51
+34-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:18:13-51
 35            <intent-filter>
-35-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:19:13-23:29
+35-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:19:13-23:29
 36                <action android:name="android.intent.action.MAIN" />
-36-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:20:17-69
-36-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:20:25-66
+36-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:20:17-69
+36-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:20:25-66
 37
 38                <category android:name="android.intent.category.LAUNCHER" />
-38-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:22:17-77
-38-->/home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:22:27-74
+38-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:22:17-77
+38-->/home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:22:27-74
 39            </intent-filter>
 40        </activity>
 41        <activity

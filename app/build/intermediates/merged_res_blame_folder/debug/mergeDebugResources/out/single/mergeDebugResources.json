@@ -1,82 +1,82 @@
 [
     {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/xml_backup_rules.xml.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/xml/backup_rules.xml"
+        "merged": "com.example.xpjourney.app-debug-44:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.xpjourney.app-main-46:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.example.xpjourney.app-debug-44:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.xpjourney.app-main-46:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "com.example.xpjourney.app-debug-44:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.xpjourney.app-main-46:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.xpjourney.app-debug-44:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.xpjourney.app-main-46:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.xpjourney.app-debug-44:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.xpjourney.app-main-46:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.xpjourney.app-debug-44:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.xpjourney.app-main-46:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.xpjourney.app-debug-44:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.xpjourney.app-main-46:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.xpjourney.app-debug-44:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.xpjourney.app-main-46:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.xpjourney.app-debug-44:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.xpjourney.app-main-46:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.xpjourney.app-debug-44:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.xpjourney.app-main-46:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
         "merged": "com.example.xpjourney.app-debug-44:/drawable_xpj_logo.webp.flat",
         "source": "com.example.xpjourney.app-main-46:/drawable/xpj_logo.webp"
     },
     {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/mipmap-xhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/mipmap-xxhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/mipmap-anydpi-v26/ic_launcher.xml"
-    },
-    {
         "merged": "com.example.xpjourney.app-debug-44:/font_poppins_medium.ttf.flat",
         "source": "com.example.xpjourney.app-main-46:/font/poppins_medium.ttf"
     },
     {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "com.example.xpjourney.app-debug-44:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.xpjourney.app-main-46:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.xpjourney.app-debug-44:/xml_backup_rules.xml.flat",
+        "source": "com.example.xpjourney.app-main-46:/xml/backup_rules.xml"
     },
     {
         "merged": "com.example.xpjourney.app-debug-44:/font_poppins_regular.ttf.flat",
         "source": "com.example.xpjourney.app-main-46:/font/poppins_regular.ttf"
     },
     {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.xpjourney.app-debug-44:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.xpjourney.app-main-46:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "com.example.xpjourney.app-debug-44:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.xpjourney.app-main-46:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/mipmap-mdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/drawable_ic_launcher_background.xml.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/drawable/ic_launcher_background.xml"
-    },
-    {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/mipmap-xxxhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/xml_data_extraction_rules.xml.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/xml/data_extraction_rules.xml"
-    },
-    {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.example.xpjourney.app-debug-44:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.xpjourney.app-main-46:/xml/data_extraction_rules.xml"
     },
     {
         "merged": "com.example.xpjourney.app-debug-44:/font_zen_dots_regular.ttf.flat",
         "source": "com.example.xpjourney.app-main-46:/font/zen_dots_regular.ttf"
     },
     {
-        "merged": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-debug-44:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "/home/ally/.gradle/daemon/8.13/com.example.xpjourney.app-main-46:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.example.xpjourney.app-debug-44:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.xpjourney.app-main-46:/mipmap-mdpi/ic_launcher.webp"
     }
 ]

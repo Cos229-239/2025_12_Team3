@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:2:1-27:12
-INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:2:1-27:12
-INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:2:1-27:12
-INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:2:1-27:12
+ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:2:1-27:12
 MERGED from [androidx.navigation:navigation-runtime-android:2.9.6] /home/ally/.gradle/caches/8.13/transforms/dd78c08292ba5c4c6168a4ea06415cdf/transformed/navigation-runtime-release/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common-android:2.9.6] /home/ally/.gradle/caches/8.13/transforms/c770bad0950e1ca841810d9fbea27e91/transformed/navigation-common-release/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-compose-android:2.9.6] /home/ally/.gradle/caches/8.13/transforms/59ed6b9085b3a4f901e31d53cc00c8ac/transformed/navigation-compose-release/AndroidManifest.xml:2:1-7:12
@@ -77,18 +77,18 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] /home/ally/.gradle/caches
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/ally/.gradle/caches/8.13/transforms/e1a8d0d6b8984b38f24ed891f2c382d6/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /home/ally/.gradle/caches/8.13/transforms/2633d3d5c9509bc4605b066933947f1c/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
 	package
-		INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml
+		INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml
+		INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml
 	xmlns:tools
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:3:5-51
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
-		INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml
+		INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:2:11-69
 application
-ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:5:5-25:19
-INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:5:5-25:19
+ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:5:5-25:19
+INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:5:5-25:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.10.0] /home/ally/.gradle/caches/8.13/transforms/9c154d3b6eaeb3df633a1a45a24a626f/transformed/ui-tooling/AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.10.0] /home/ally/.gradle/caches/8.13/transforms/9c154d3b6eaeb3df633a1a45a24a626f/transformed/ui-tooling/AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.window:window:1.5.0] /home/ally/.gradle/caches/8.13/transforms/8484f75083c4290bba91b91cdc5bed1f/transformed/window-1.5.0/AndroidManifest.xml:22:5-29:19
@@ -110,49 +110,49 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /home/ally/.gradle/caches/8
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/ally/.gradle/caches/8.13/transforms/d5c281b714cec57bb628a97250272074/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/ally/.gradle/caches/8.13/transforms/d5c281b714cec57bb628a97250272074/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 	android:extractNativeLibs
-		INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml
+		INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.17.0] /home/ally/.gradle/caches/8.13/transforms/6ed49b8113af8abbf5990bff8e54a278/transformed/core-1.17.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:12:9-35
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:12:9-35
 	android:label
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:10:9-41
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:10:9-41
 	android:fullBackupContent
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:8:9-54
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:8:9-54
 	android:roundIcon
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:11:9-54
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:11:9-54
 	android:icon
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:9:9-43
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:9:9-43
 	android:allowBackup
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:6:9-35
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:6:9-35
 	android:theme
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:13:9-47
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:13:9-47
 	android:dataExtractionRules
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:7:9-65
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:7:9-65
 activity#com.example.xpjourney.MainActivity
-ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:14:9-24:20
+ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:14:9-24:20
 	android:label
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:17:13-45
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:17:13-45
 	android:exported
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:16:13-36
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:16:13-36
 	android:theme
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:18:13-51
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:18:13-51
 	android:name
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:15:13-41
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:15:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:19:13-23:29
+ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:19:13-23:29
 action#android.intent.action.MAIN
-ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:20:17-69
+ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:20:25-66
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:22:17-77
+ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml:22:27-74
+		ADDED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml:22:27-74
 uses-sdk
-INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml
-INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml
+INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml
+INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml
 MERGED from [androidx.navigation:navigation-runtime-android:2.9.6] /home/ally/.gradle/caches/8.13/transforms/dd78c08292ba5c4c6168a4ea06415cdf/transformed/navigation-runtime-release/AndroidManifest.xml:20:5-44
 MERGED from [androidx.navigation:navigation-runtime-android:2.9.6] /home/ally/.gradle/caches/8.13/transforms/dd78c08292ba5c4c6168a4ea06415cdf/transformed/navigation-runtime-release/AndroidManifest.xml:20:5-44
 MERGED from [androidx.navigation:navigation-common-android:2.9.6] /home/ally/.gradle/caches/8.13/transforms/c770bad0950e1ca841810d9fbea27e91/transformed/navigation-common-release/AndroidManifest.xml:20:5-44
@@ -298,9 +298,9 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/a
 MERGED from [androidx.print:print:1.0.0] /home/ally/.gradle/caches/8.13/transforms/2633d3d5c9509bc4605b066933947f1c/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] /home/ally/.gradle/caches/8.13/transforms/2633d3d5c9509bc4605b066933947f1c/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
 	android:targetSdkVersion
-		INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml
+		INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/ally/Development/PNP2/XPJourney/app/src/main/AndroidManifest.xml
+		INJECTED from /home/ally/Development/PNP2/Reclone/2025_12_Team3/app/src/main/AndroidManifest.xml
 activity#androidx.compose.ui.tooling.PreviewActivity
 ADDED from [androidx.compose.ui:ui-tooling-android:1.10.0] /home/ally/.gradle/caches/8.13/transforms/9c154d3b6eaeb3df633a1a45a24a626f/transformed/ui-tooling/AndroidManifest.xml:23:9-25:39
 	android:exported
