@@ -25,6 +25,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun JournalTextField(currentText: String, onTextChange: (String) -> Unit, label: String, modifier: Modifier = Modifier) {
@@ -72,7 +75,7 @@ class JournalViewModelFactory(private val repo: JournalRepository) : ViewModelPr
 }*/
 
 @Composable
-fun TempJournalScreen() {
+fun TempJournalScreen(navController: NavController) {
     val context = LocalContext.current
 
     val db = remember { JournalDatabase.getDatabase(context) }
@@ -121,9 +124,9 @@ fun TempJournalScreen() {
             Row(
                 modifier = Modifier.fillMaxWidth(), Arrangement.Center
             ) {
-                JournalButton(onClick = {}, buttonLabel = "Save and Exit")
+                JournalButton(onClick = {navController.navigate("dashboard")}, buttonLabel = "Save and Exit")
                 Spacer(modifier = Modifier.width(10.dp))
-                JournalButton(onClick = {}, buttonLabel = "Discard Entry")
+                JournalButton(onClick = {navController.navigate("dashboard")}, buttonLabel = "Discard Entry")
             }
         }
     }

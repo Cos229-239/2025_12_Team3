@@ -35,6 +35,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import com.example.xpjourney.ui.theme.Poppins
+import com.example.xpjourney.ui.theme.XPJBlue
 
 
 class MainActivity : ComponentActivity() {
@@ -44,9 +45,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             XPJourneyTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "dashboard") {
+                NavHost(navController = navController, startDestination = "login") {
+                    composable("login") {LoginScreen(navController)}
+                    composable("register") {DetailedSignUpScreen(navController)}
+                    composable("forgot") {ForgotPasswordScreen(navController)}
                     composable("dashboard") { DashboardScreen( navController) }
-                    composable("entry") { JournalEntryScreen() }
+                    composable("entry") { TempJournalScreen(navController) }
                     composable("badges") { BadgesScreen() }
                     composable("journey") { JourneyScreen() }
                 }
@@ -121,18 +125,10 @@ fun DashboardScreen(navController: NavController) {
         }
     }
 }
-@Composable
+/*@Composable
 fun JournalEntryScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text("Journal Entry Screen")
-    }
-}
+    TempJournalScreen()
+}*/
 
 @Composable
 fun BadgesScreen() {
@@ -170,7 +166,7 @@ fun XPJButton(
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.primary,
+            containerColor = XPJBlue,
             contentColor = MaterialTheme.colorScheme.onPrimary
         ),
         shape = RoundedCornerShape(12.dp),
