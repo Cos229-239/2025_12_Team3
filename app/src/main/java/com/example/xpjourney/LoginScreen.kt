@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
+import androidx.compose.material3.AlertDialogDefaults.containerColor
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,6 +28,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -56,7 +58,7 @@ val IconCircleColor = Color(0xFFE6E6FA) // Light Lavender/Periwinkle for the cir
     }
 }*/
 
-@Composable
+/*@Composable
 fun AppNavigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.Login.route) {
@@ -81,11 +83,11 @@ fun AppNavigation() {
             HomeScreen()
         }
     }
-}
+}*/
 
 // --- LOGIN SCREEN (FIXED TEXT INPUT) ---
 @Composable
-fun LoginScreen(onNavigateToRegister: () -> Unit, onNavigateToForgot: () -> Unit, onLoginSuccess: () -> Unit) {
+fun LoginScreen(/*onNavigateToRegister: () -> Unit, onNavigateToForgot: () -> Unit, onLoginSuccess: () -> Unit*/ navController: NavController) {
     var username by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
 
@@ -158,7 +160,7 @@ fun LoginScreen(onNavigateToRegister: () -> Unit, onNavigateToForgot: () -> Unit
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp)
+                //.height(50.dp)
                 .shadow(2.dp, shape = RoundedCornerShape(8.dp))
         )
 
@@ -181,7 +183,7 @@ fun LoginScreen(onNavigateToRegister: () -> Unit, onNavigateToForgot: () -> Unit
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp)
+                //.height(50.dp)
                 .shadow(2.dp, shape = RoundedCornerShape(8.dp))
         )
 
@@ -195,7 +197,7 @@ fun LoginScreen(onNavigateToRegister: () -> Unit, onNavigateToForgot: () -> Unit
             Button(
                 onClick = {
                     if (username.text.isNotEmpty() && password.text.isNotEmpty()) {
-                        onLoginSuccess()
+                        navController.navigate("dashboard")
                     }
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonPink),
@@ -208,7 +210,7 @@ fun LoginScreen(onNavigateToRegister: () -> Unit, onNavigateToForgot: () -> Unit
                 Text("Login", color = Color.White)
             }
             Button(
-                onClick = onNavigateToForgot,
+                onClick = {navController.navigate("forgot") },
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonPink),
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier
@@ -247,7 +249,7 @@ fun LoginScreen(onNavigateToRegister: () -> Unit, onNavigateToForgot: () -> Unit
 
         // Register Button
         Button(
-            onClick = onNavigateToRegister,
+            onClick = {navController.navigate("register")},
             colors = ButtonDefaults.buttonColors(containerColor = ButtonPink),
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier
@@ -261,7 +263,7 @@ fun LoginScreen(onNavigateToRegister: () -> Unit, onNavigateToForgot: () -> Unit
 
 // --- FORGOT PASSWORD SCREEN ---
 @Composable
-fun ForgotPasswordScreen(onNavigateToLogin: () -> Unit) {
+fun ForgotPasswordScreen(navController: NavController) {
     var newPassword by remember { mutableStateOf(TextFieldValue("")) }
     var confirmPassword by remember { mutableStateOf(TextFieldValue("")) }
 
@@ -332,7 +334,7 @@ fun ForgotPasswordScreen(onNavigateToLogin: () -> Unit) {
         Button(
             onClick = {
                 // Handle password reset logic
-                onNavigateToLogin() // Go back to login after reset attempt
+                navController.navigate("login")
             },
             colors = ButtonDefaults.buttonColors(containerColor = ButtonPink),
             shape = RoundedCornerShape(8.dp),
@@ -347,7 +349,7 @@ fun ForgotPasswordScreen(onNavigateToLogin: () -> Unit) {
 
 // --- DETAILED SIGN UP SCREEN ---
 @Composable
-fun DetailedSignUpScreen(onNavigateToLogin: () -> Unit) {
+fun DetailedSignUpScreen(navController: NavController) {
     var firstName by remember { mutableStateOf(TextFieldValue("")) }
     var lastName by remember { mutableStateOf(TextFieldValue("")) }
     var email by remember { mutableStateOf(TextFieldValue("")) }
@@ -422,7 +424,7 @@ fun DetailedSignUpScreen(onNavigateToLogin: () -> Unit) {
 
         // Login Button (Matching the image)
         Button(
-            onClick = { /* Handle Sign Up Logic */ },
+            onClick = { navController.navigate("login") },
             colors = ButtonDefaults.buttonColors(containerColor = ButtonPink),
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier
@@ -504,10 +506,10 @@ fun HomeScreen() {
     }
 }
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun ForgotPasswordScreenPreview() {
     XPJourneyTheme {
         ForgotPasswordScreen(onNavigateToLogin = {})
     }
-}
+}*/

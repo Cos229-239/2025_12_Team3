@@ -48,7 +48,7 @@ private val lightColorScheme = lightColorScheme(
 
 private val XPJColorScheme = lightColorScheme(
     primary = XPJBlue,
-    secondary = XPJAccentPink,
+    secondary = XPJLightBlue,
     background = XPJLightBlue,
     onPrimary = Color.White,
     onBackground = Color.Black
