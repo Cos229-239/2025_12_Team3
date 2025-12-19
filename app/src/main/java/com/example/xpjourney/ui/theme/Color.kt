@@ -10,6 +10,8 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-val XPJBlue = Color(0xFFABC4FF)
+val XPJBlue = Color(0xFF2F5EFF)
 
 val XPJLightBlue = Color(0xFFABC4FF)
+
+val XPJAccentPink =  Color(0xFFFF8FA3)
