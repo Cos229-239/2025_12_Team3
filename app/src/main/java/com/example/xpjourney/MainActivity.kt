@@ -252,9 +252,10 @@ fun DashboardPreview() {
     val fakeNavController = rememberNavController()
     val fakeViewModel = FakeProgressViewModel()
 
-XPJourneyTheme {
-    DashboardScreen (navController = fakeNavController, viewModel = fakeViewModel)
-    }
+    DashboardScreen(
+        navController = fakeNavController,
+        viewModel = fakeViewModel
+    )
 }
 
 class FakeProgressViewModel : ViewModel(), ProgressViewModelContract {
