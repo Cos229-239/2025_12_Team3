@@ -25,9 +25,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.launch
 
 @Composable
 fun JournalTextField(currentText: String, onTextChange: (String) -> Unit, label: String, modifier: Modifier = Modifier) {
@@ -53,17 +56,12 @@ fun JournalButton(modifier: Modifier, onClick: () -> Unit, buttonLabel: String) 
     }
 }
 
-/*class JournalRepository(private val dao: JournalDao) {
-    suspend fun insert(entry: JournalEntry) = dao.insertEntry(entry)
-    suspend fun getAll() = dao.getAllEntries()
-}
-
 class JournalViewModel(private val repo: JournalRepository) : ViewModel() {
     fun saveEntry(title: String, content: String) {
         val entry = JournalEntry(title = title, body = content)
 
         viewModelScope.launch {
-            repo.insert(entry)
+            repo.addEntry(entry)
         }
     }
 }
@@ -72,7 +70,7 @@ class JournalViewModelFactory(private val repo: JournalRepository) : ViewModelPr
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return JournalViewModel(repo) as T
     }
-}*/
+}
 
 @Composable
 fun TempJournalScreen(navController: NavController) {
@@ -80,9 +78,9 @@ fun TempJournalScreen(navController: NavController) {
 
     val db = remember { JournalDatabase.getDatabase(context) }
     val repo = remember { JournalRepository(db.JournalDao()) }
-    /*val viewModel: JournalViewModel = viewModel(
+    val viewModel: JournalViewModel = viewModel(
         factory = JournalViewModelFactory(repo)
-    )*/
+    )
 
     var gameName by remember {mutableStateOf("")}
     var title by remember { mutableStateOf("") }
@@ -124,9 +122,9 @@ fun TempJournalScreen(navController: NavController) {
             Row(
                 modifier = Modifier.fillMaxWidth(), Arrangement.Center
             ) {
-                JournalButton(onClick = {navController.navigate("dashboard")}, buttonLabel = "Save and Exit")
+                JournalButton(onClick = {viewModel.saveEntry(title, content)}, buttonLabel = "Save and Exit")
                 Spacer(modifier = Modifier.width(10.dp))
-                JournalButton(onClick = {navController.navigate("dashboard")}, buttonLabel = "Discard Entry")
+                JournalButton(onClick = {}, buttonLabel = "Discard Entry")
             }
         }
     }
