@@ -1,5 +1,6 @@
 package com.example.xpjourney
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,8 +20,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.NavController
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Directions
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -48,7 +47,8 @@ import com.example.xpjourney.viewmodel.ProgressViewModelContract
 import com.example.xpjourney.viewmodel.UserProgressViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.time.LocalDate
-import kotlinx.coroutines.flow.StateFlow
+import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.Search
 
 val android.content.Context.dataStore by preferencesDataStore(name = "user_progress")
 
@@ -131,14 +131,24 @@ fun DashboardScreen(
                 ),
                 modifier = Modifier.padding(top = 0.dp)
             )
-            XPJButton("Add Entry", Icons.Filled.Add, onClick = {
-                xp += 10
+            // Streak
+            Text(
+                text = "🔥Current Streak: ${progressState.value.currentStreak} days",
+                style = TextStyle(
+                    fontFamily = Poppins,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold
+                ),
+                modifier = Modifier.padding(top = 4.dp)
+            )
+
+            XPJButton("View Recent Entries", Icons.Filled.History, onClick = {
                 navController.navigate("entry")
             })
             XPJButton("View Badges", Icons.Filled.Star, onClick = {
                 navController.navigate("badges")
             })
-            XPJButton("Start Journey", Icons.Filled.Directions, onClick = {
+            XPJButton("Search Games", Icons.Filled.Search, onClick = {
                 navController.navigate("journey")
             })
             XPJButton("View Profile", Icons.Filled.Person, onClick = {
@@ -257,6 +267,7 @@ fun DashboardPreview() {
         viewModel = fakeViewModel
     )
 }
+
 
 class FakeProgressViewModel : ViewModel(), ProgressViewModelContract {
     override val progressState = MutableStateFlow(
