@@ -1,6 +1,5 @@
 package com.example.xpjourney
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,6 +22,7 @@ import androidx.navigation.NavController
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.graphics.Color
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
@@ -49,6 +49,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import java.time.LocalDate
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Search
+import com.example.xpjourney.ui.theme.XPJBlue
+import androidx.compose.material.icons.filled.Add
+import com.example.xpjourney.ui.screens.RecentEntriesScreen
+
 
 val android.content.Context.dataStore by preferencesDataStore(name = "user_progress")
 
@@ -80,6 +84,7 @@ class MainActivity : ComponentActivity() {
                     composable("badges") { BadgesScreen() }
                     composable("journey") { JourneyScreen() }
                     composable("profile") { ProfileScreen() }
+                    composable("recent_entries") { RecentEntriesScreen(navController) }
                 }
             }
         }
@@ -141,9 +146,9 @@ fun DashboardScreen(
                 ),
                 modifier = Modifier.padding(top = 4.dp)
             )
-
+             // Buttons
             XPJButton("View Recent Entries", Icons.Filled.History, onClick = {
-                navController.navigate("entry")
+                navController.navigate("recent_entries")
             })
             XPJButton("View Badges", Icons.Filled.Star, onClick = {
                 navController.navigate("badges")
@@ -172,6 +177,22 @@ fun DashboardScreen(
                 )
             }
             Text("XP: $xp/$xpGoal", fontSize = 12.sp)
+        }
+        FloatingActionButton(
+            onClick = { navController.navigate("entry") },
+            containerColor = XPJBlue,
+            contentColor = Color.White,
+            modifier = Modifier
+                .size(94.dp)
+                .align(Alignment.BottomEnd)
+                .padding(24.dp),
+            shape = CircleShape
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Add,
+                contentDescription = "Add Entry",
+                modifier = Modifier.size(48.dp)
+            )
         }
     }
 }
