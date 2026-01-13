@@ -52,6 +52,7 @@ import androidx.compose.material.icons.filled.Search
 import com.example.xpjourney.ui.theme.XPJBlue
 import androidx.compose.material.icons.filled.Add
 import com.example.xpjourney.ui.screens.RecentEntriesScreen
+import com.example.xpjourney.ui.screens.sampleEntries
 
 
 val android.content.Context.dataStore by preferencesDataStore(name = "user_progress")
@@ -84,7 +85,11 @@ class MainActivity : ComponentActivity() {
                     composable("badges") { BadgesScreen() }
                     composable("journey") { JourneyScreen() }
                     composable("profile") { ProfileScreen() }
-                    composable("recent_entries") { RecentEntriesScreen(navController) }
+                    composable("recent_entries") {
+                        RecentEntriesScreen(
+                            navController = navController,
+                            entries = sampleEntries
+                        ) }
                 }
             }
         }

@@ -14,54 +14,100 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.foundation.background
+import com.example.xpjourney.ui.theme.XPJLightBlue
+import com.example.xpjourney.data.GameEntry
 
+val sampleEntries = listOf(
+    GameEntry("The Sims", "Had a productive day working on my house.", "Jan 12, 2026", "4:15 PM"),
+    GameEntry("Stardew Valley", "Upgraded my barn and unlocked goats!", "Jan 11, 2026", "7:40 PM"),
+    GameEntry("Hades", "Beat Meg without taking damage.", "Jan 10, 2026", "9:22 PM")
+)
 
-@Preview(showBackground = true)
 @Composable
 fun RecentEntriesScreen(
     navController: NavController? = null,
-    entries: List<String> = listOf(
-        "Had a productive day working on XPJourney!",
-        "Went for a walk and cleared my head.",
-        "Learned more about Jetpack Compose."
-    )
+    entries: List<GameEntry> = sampleEntries
 ) {
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .background(XPJLightBlue)
     ) {
-        Text(
-            text = "Recent Entries",
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
         ) {
-            items(entries) { entry ->
-                EntryCard(entry)
+            Text(
+                text = "Recent Entries",
+                style = MaterialTheme.typography.headlineSmall,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(bottom = 12.dp)
+            )
+
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier.padding(top = 8.dp)
+            ) {
+                items(entries) { entry ->
+                    EntryCard(entry)
+                }
             }
         }
     }
 }
 
+@Preview(showBackground = true)
 @Composable
-fun EntryCard(text: String) {
+fun RecentEntriesScreenPreview() {
+    RecentEntriesScreen(entries = sampleEntries)
+}
+
+
+@Composable
+fun EntryCard(entry: GameEntry) {
     Card(
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.White
+            containerColor = MaterialTheme.colorScheme.surface
         ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 6.dp
-        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
-        Text(
-            text = text,
-            modifier = Modifier.padding(16.dp),
-            color = Color.DarkGray
-        )
+        Column(modifier = Modifier.padding(16.dp)) {
+
+            // Game name
+            Text(
+                text = entry.gameName,
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.primary
+            )
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            // Date + time row
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text(
+                    text = entry.date,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Text(
+                    text = entry.time,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Entry text
+            Text(
+                text = entry.entryText,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+        }
     }
 }
