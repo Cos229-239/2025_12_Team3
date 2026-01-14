@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "dashboard") {
                     composable("dashboard") { DashboardScreen( navController) }
-                    composable("entry") { JournalEntryScreen() }
+                    composable("entry") { TempJournalScreen(navController) }
                     composable("badges") { BadgesScreen() }
                     composable("journey") { JourneyScreen() }
                 }
