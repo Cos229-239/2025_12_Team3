@@ -67,14 +67,15 @@ class JournalViewModel(private val repo: JournalRepository) : ViewModel() {
     }
 
     fun fetchSteamData(appId: String) {
-        SteamApi.fetchGameDetails(appId)
+        viewModelScope.launch {
+            SteamApi.fetchGameDetails(appId)
+        }
     }
 }
 
 class JournalViewModelFactory(private val repo: JournalRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return JournalViewModel(repo) as T
-
     }
 }
 
@@ -128,7 +129,7 @@ fun TempJournalScreen(navController: NavController) {
             Row(
                 modifier = Modifier.fillMaxWidth(), Arrangement.Center
             ) {
-                JournalButton(onClick = {viewModel.saveEntry(title, content)}, buttonLabel = "Save and Exit")
+                JournalButton(onClick = {}, buttonLabel = "Save and Exit")
                 Spacer(modifier = Modifier.width(10.dp))
                 JournalButton(onClick = {}, buttonLabel = "Discard Entry")
             }
