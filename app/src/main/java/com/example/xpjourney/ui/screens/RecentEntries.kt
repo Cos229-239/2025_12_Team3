@@ -15,13 +15,20 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.ui.Alignment
 import com.example.xpjourney.ui.theme.XPJLightBlue
 import com.example.xpjourney.data.GameEntry
+import com.example.xpjourney.ui.theme.XPJBlue
+import androidx.compose.material3.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 
 val sampleEntries = listOf(
     GameEntry("The Sims", "Had a productive day working on my house.", "Jan 12, 2026", "4:15 PM"),
-    GameEntry("Stardew Valley", "Upgraded my barn and unlocked goats!", "Jan 11, 2026", "7:40 PM"),
-    GameEntry("Hades", "Beat Meg without taking damage.", "Jan 10, 2026", "9:22 PM")
+    GameEntry("Stardew Valley", "Upgraded my barn and unlocked goats!", "Feb 11, 2026", "7:40 PM"),
+    GameEntry("Hades", "Beat Meg without taking damage.", "Mar 10, 2026", "9:22 PM")
 )
 
 @Composable
@@ -54,6 +61,22 @@ fun RecentEntriesScreen(
                     EntryCard(entry)
                 }
             }
+        }
+        FloatingActionButton(
+            onClick = { navController?.navigate("add_entry") },
+            containerColor = XPJBlue,
+            contentColor = Color.White,
+            modifier = Modifier
+                .size(94.dp)
+                .align(Alignment.BottomEnd)
+                .padding(24.dp),
+            shape = CircleShape
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Add,
+                contentDescription = "Add Entry",
+                modifier = Modifier.size(48.dp)
+            )
         }
     }
 }

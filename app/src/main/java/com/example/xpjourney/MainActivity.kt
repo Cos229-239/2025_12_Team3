@@ -90,6 +90,9 @@ class MainActivity : ComponentActivity() {
                             navController = navController,
                             entries = sampleEntries
                         ) }
+                    composable("add_entry") {
+                        AddEntryScreen(navController = navController)
+                    }
                 }
             }
         }
@@ -184,7 +187,7 @@ fun DashboardScreen(
             Text("XP: $xp/$xpGoal", fontSize = 12.sp)
         }
         FloatingActionButton(
-            onClick = { navController.navigate("entry") },
+            onClick = { navController.navigate("add_entry") },
             containerColor = XPJBlue,
             contentColor = Color.White,
             modifier = Modifier
