@@ -23,8 +23,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.xpjourney.ui.theme.XPJLightBlue
 import androidx.compose.foundation.layout.Box
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.ui.graphics.Color
+import androidx.compose.material3.Card
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+
+
+
+
 
 
 @Entity(tableName = "journal_entries")
@@ -48,48 +59,78 @@ fun AddEntryScreen(
             .fillMaxSize()
             .background(XPJLightBlue)
             .padding(20.dp)
-    )
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp)
     ) {
-        Text(
-            text = "New Entry",
-            style = MaterialTheme.typography.headlineSmall,
-            color = XPJBlue
-        )
-        OutlinedTextField(
-            value = gameName,
-            onValueChange = { gameName = it },
-            label = { Text("Game Name") },
+        Card(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = Color.White,
-                unfocusedContainerColor = Color.White
-            )
-        )
-        OutlinedTextField(
-            value = entryText,
-            onValueChange = { entryText = it },
-            label = { Text("What happened?") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp),
-            maxLines = 6,
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = Color.White,
-                unfocusedContainerColor = Color.White
-            )
-        )
+                .fillMaxWidth(0.9f)
+                .align(Alignment.TopCenter)
+                .padding(top = 16.dp)
+                .heightIn(min = 340.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = Color.White
+            ),
+            shape = RoundedCornerShape(20.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "New Entry",
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = XPJBlue
+                )
+                OutlinedTextField(
+                    value = gameName,
+                    onValueChange = { gameName = it },
+                    label = { Text("Game Name") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = Color.White,
+                        unfocusedContainerColor = Color.White
+                    )
+                )
+                OutlinedTextField(
+                    value = entryText,
+                    onValueChange = { entryText = it },
+                    label = { Text("What happened?") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp)
+                        .heightIn(min = 120.dp),
+                    maxLines = 6,
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = Color.White,
+                        unfocusedContainerColor = Color.White
+                    )
+                )
+                Button(
+                    onClick = { },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 20.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = XPJBlue
+                    ),
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Text(
+                        text = "Save",
+                        color = Color.White,
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                }
+            }
+        }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun AddEntryScreenPreview() {
-    AddEntryScreen()
-}
+    @Preview(showBackground = true)
+    @Composable
+    fun AddEntryScreenPreview() {
+        AddEntryScreen()
+    }
