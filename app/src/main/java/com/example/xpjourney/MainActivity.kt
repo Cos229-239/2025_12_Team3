@@ -1,5 +1,6 @@
 package com.example.xpjourney
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -53,6 +54,8 @@ import com.example.xpjourney.ui.theme.XPJBlue
 import androidx.compose.material.icons.filled.Add
 import com.example.xpjourney.ui.screens.RecentEntriesScreen
 import com.example.xpjourney.ui.screens.sampleEntries
+import androidx.compose.runtime.mutableStateOf
+
 
 
 val android.content.Context.dataStore by preferencesDataStore(name = "user_progress")
@@ -73,13 +76,31 @@ class MainActivity : ComponentActivity() {
             }
         }
         setContent {
+
             XPJourneyTheme {
                 val navController = rememberNavController()
                 val progressViewModel: UserProgressViewModel = viewModel(factory = factory)
+
                 LaunchedEffect(Unit) {
                     progressViewModel.onLogin()
                 }
-                NavHost(navController = navController, startDestination = "dashboard") {
+                var isLoggedIn by remember { mutableStateOf(false) }
+
+
+                NavHost(
+                    navController = navController,
+                    startDestination = if (isLoggedIn) "dashboard" else "login"
+                ) {
+                    composable("login") {
+                        LoginScreen(
+                            onLoginSuccess = {
+                                isLoggedIn = true
+                                navController.navigate("dashboard") {
+                                    popUpTo("login") { inclusive = true }
+                                }
+                            }
+                        )
+                    }
                     composable("dashboard") { DashboardScreen( navController, progressViewModel) }
                     composable("entry") { JournalEntryScreen() }
                     composable("badges") { BadgesScreen() }
@@ -285,16 +306,12 @@ fun ProfileScreen() {
 }
 
 
+@SuppressLint("ViewModelConstructor")
 @Preview(showBackground = true)
 @Composable
 fun DashboardPreview() {
-    val fakeNavController = rememberNavController()
-    val fakeViewModel = FakeProgressViewModel()
-
-    DashboardScreen(
-        navController = fakeNavController,
-        viewModel = fakeViewModel
-    )
+    val fakeVm = FakeProgressViewModel()
+    DashboardScreen(navController = rememberNavController(), viewModel = fakeVm)
 }
 
 

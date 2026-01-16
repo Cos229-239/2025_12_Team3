@@ -26,9 +26,27 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 
 val sampleEntries = listOf(
-    GameEntry("The Sims", "Had a productive day working on my house.", "Jan 12, 2026", "4:15 PM"),
-    GameEntry("Stardew Valley", "Upgraded my barn and unlocked goats!", "Feb 11, 2026", "7:40 PM"),
-    GameEntry("Hades", "Beat Meg without taking damage.", "Mar 10, 2026", "9:22 PM")
+    GameEntry(
+        title = "Building Day",
+        gameName = "The Sims",
+        entryText = "Had a  productive day working on building my house.",
+        date = "Jan 12, 2026",
+        time = "4:15 PM"
+    ),
+    GameEntry(
+        title = "Barn Upgrade",
+        gameName = "Stardew Valley",
+        entryText = "Upgraded my barn and unlocked goats!",
+        date = "Feb 21, 2026",
+        time = "7:40 PM"
+    ),
+    GameEntry(
+        title = "Flawless Victory",
+        gameName = "Hades",
+        entryText = "Beat Meg without taking any damage.",
+        date = "Mar 30, 2026",
+        time = "9:22 PM"
+    )
 )
 
 @Composable
@@ -100,9 +118,9 @@ fun EntryCard(entry: GameEntry) {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
 
-            // Game name
+            // Entry Title/Game Name
             Text(
-                text = entry.gameName,
+                text = "${entry.title} / ${entry.gameName}",
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.primary
             )
