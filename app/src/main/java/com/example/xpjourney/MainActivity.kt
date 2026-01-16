@@ -5,38 +5,31 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.xpjourney.ui.theme.XPJourneyTheme
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.NavController
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Directions
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.foundation.background
+import com.example.xpjourney.ui.theme.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import com.example.xpjourney.ui.theme.Poppins
-import com.example.xpjourney.ui.theme.XPJBlue
-
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.xpjourney.ui.theme.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,12 +39,12 @@ class MainActivity : ComponentActivity() {
             XPJourneyTheme {
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "login") {
-                    composable("login") {LoginScreen(navController)}
-                    composable("register") {DetailedSignUpScreen(navController)}
-                    composable("forgot") {ForgotPasswordScreen(navController)}
-                    composable("dashboard") { DashboardScreen( navController) }
+                    composable("login") { LoginScreen(navController) }
+                    composable("register") { DetailedSignUpScreen(navController) }
+                    composable("forgot") { ForgotPasswordScreen(navController) }
+                    composable("dashboard") { DashboardScreen(navController) }
                     composable("entry") { TempJournalScreen(navController) }
-                    composable("badges") { BadgesScreen() }
+                    composable("badges") { BadgesScreen(navController) }
                     composable("journey") { JourneyScreen() }
                 }
             }
@@ -64,12 +57,11 @@ fun DashboardScreen(navController: NavController) {
     var xp by remember { mutableIntStateOf(120) }
     val xpGoal = 200
     val progress = xp.toFloat() / xpGoal.toFloat()
-    val xpjBlue = Color(0xFFABC4FF)
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(xpjBlue)
+            .background(PrimaryBlue)
     ) {
         Column(
             modifier = Modifier
@@ -106,7 +98,7 @@ fun DashboardScreen(navController: NavController) {
             })
 
         }
-        Column(                     // XP tracker in top-right corner
+        Column(
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(top = 48.dp, end = 16.dp),
@@ -123,23 +115,6 @@ fun DashboardScreen(navController: NavController) {
             }
             Text("XP: $xp/$xpGoal", fontSize = 12.sp)
         }
-    }
-}
-/*@Composable
-fun JournalEntryScreen() {
-    TempJournalScreen()
-}*/
-
-@Composable
-fun BadgesScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text("Badges Screen")
     }
 }
 
@@ -192,4 +167,3 @@ fun DashboardPreview() {
         DashboardScreen(navController)
     }
 }
-
