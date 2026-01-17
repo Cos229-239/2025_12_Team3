@@ -25,13 +25,13 @@ val Poppins = FontFamily(
 )
 
 private val DarkColorScheme = darkColorScheme(
-    primary = XPJBlue,
+    primary = Purple80,
     secondary = PurpleGrey80,
     tertiary = Pink80
 )
 
 private val lightColorScheme = lightColorScheme(
-    primary = XPJBlue,
+    primary = Purple40,
     secondary = PurpleGrey40,
     tertiary = Pink40
 
@@ -46,15 +46,11 @@ private val lightColorScheme = lightColorScheme(
     */
 )
 
-val XPJColorScheme = lightColorScheme(
+private val XPJColorScheme = lightColorScheme(
     primary = XPJBlue,
-    onPrimary = Color.White,
-
-    primaryContainer = XPJBlue,
-    onPrimaryContainer = Color.White,
-
-    secondary = XPJLightBlue,
+    secondary = XPJAccentPink,
     background = XPJLightBlue,
+    onPrimary = Color.White,
     onBackground = Color.Black
 )
 
