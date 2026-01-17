@@ -31,6 +31,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import kotlinx.coroutines.launch
+import android.util.Log
 
 @Composable
 fun JournalTextField(currentText: String, onTextChange: (String) -> Unit, label: String, modifier: Modifier = Modifier) {
@@ -62,6 +63,12 @@ class JournalViewModel(private val repo: JournalRepository) : ViewModel() {
 
         viewModelScope.launch {
             repo.addEntry(entry)
+        }
+    }
+
+    fun fetchSteamData(appId: String) {
+        viewModelScope.launch {
+            SteamApi.fetchGameDetails(appId)
         }
     }
 }
@@ -99,7 +106,7 @@ fun TempJournalScreen(navController: NavController) {
                     label = "Enter Game Name"
                 )
                 Spacer(modifier = Modifier.width(10.dp))
-                JournalButton(onClick = {}, buttonLabel = "\uD83D\uDD0D")
+                JournalButton(onClick = {viewModel.fetchSteamData(gameName)}, buttonLabel = "\uD83D\uDD0D")
             }
 
             Box(modifier = Modifier.fillMaxWidth().padding(10.dp).background(color = Color(red = 112, green = 153, blue = 255))) {
@@ -122,7 +129,7 @@ fun TempJournalScreen(navController: NavController) {
             Row(
                 modifier = Modifier.fillMaxWidth(), Arrangement.Center
             ) {
-                JournalButton(onClick = {viewModel.saveEntry(title, content)}, buttonLabel = "Save and Exit")
+                JournalButton(onClick = {}, buttonLabel = "Save and Exit")
                 Spacer(modifier = Modifier.width(10.dp))
                 JournalButton(onClick = {}, buttonLabel = "Discard Entry")
             }
