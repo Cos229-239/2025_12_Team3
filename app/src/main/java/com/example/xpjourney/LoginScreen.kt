@@ -126,7 +126,7 @@ fun LoginScreen(
                 onClick = {
                     if (rememberMe) {
                         loginViewModel.login()
-                        //TODO: DataStore login persistence
+                        onLoginSuccess()
                     }
                     onLoginSuccess()
                 },
@@ -158,4 +158,4 @@ fun LoginScreenPreview() {
         onLoginSuccess = {},
         loginViewModel = fakeViewModel
     )
-    }
+}
