@@ -52,10 +52,13 @@ import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Search
 import com.example.xpjourney.ui.theme.XPJBlue
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ExitToApp
 import com.example.xpjourney.ui.screens.RecentEntriesScreen
 import com.example.xpjourney.ui.screens.sampleEntries
 import androidx.compose.runtime.mutableStateOf
-
+import androidx.compose.ui.platform.LocalContext
+import com.example.xpjourney.data.LoginDataStore
+import com.example.xpjourney.viewmodel.LoginViewModel
 
 
 val android.content.Context.dataStore by preferencesDataStore(name = "user_progress")
@@ -80,11 +83,15 @@ class MainActivity : ComponentActivity() {
             XPJourneyTheme {
                 val navController = rememberNavController()
                 val progressViewModel: UserProgressViewModel = viewModel(factory = factory)
+                val context = LocalContext.current
+                val loginViewModel = remember { LoginViewModel(LoginDataStore(context)) }
+
+                // Observe login state as a Compose value
+                val isLoggedIn by loginViewModel.isLoggedIn.collectAsState()
 
                 LaunchedEffect(Unit) {
                     progressViewModel.onLogin()
                 }
-                var isLoggedIn by remember { mutableStateOf(false) }
 
 
                 NavHost(
@@ -93,15 +100,27 @@ class MainActivity : ComponentActivity() {
                 ) {
                     composable("login") {
                         LoginScreen(
-                            onLoginSuccess = {
-                                isLoggedIn = true
-                                navController.navigate("dashboard") {
-                                    popUpTo("login") { inclusive = true }
-                                }
+                        onLoginSuccess = {
+                            navController.navigate("dashboard") {
+                                popUpTo("login") { inclusive = true }
                             }
+                        },
+                            loginViewModel = loginViewModel
                         )
                     }
-                    composable("dashboard") { DashboardScreen( navController, progressViewModel) }
+                    composable("dashboard") {
+                        DashboardScreen(
+                            onLogout = {
+                                loginViewModel.logout()
+                                navController.navigate("login") {
+                                    popUpTo("dashboard") { inclusive = true }
+                                }
+                            },
+                            navController = navController,
+                            viewModel = progressViewModel
+                        )
+                    }
+
                     composable("entry") { JournalEntryScreen() }
                     composable("badges") { BadgesScreen() }
                     composable("journey") { JourneyScreen() }
@@ -122,9 +141,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DashboardScreen(
+    onLogout: () -> Unit,
     navController: NavController,
-    viewModel: ProgressViewModelContract
-) {
+    viewModel: ProgressViewModelContract,
+
+    ) {
     val progressState = viewModel.progressState.collectAsState()
 
     Column {
@@ -187,8 +208,11 @@ fun DashboardScreen(
             })
             XPJButton("View Profile", Icons.Filled.Person, onClick = {
                 navController.navigate("profile")
-        })
-
+            })
+            XPJButton("Logout",
+                icon = Icons.Filled.ExitToApp,
+                onClick = { onLogout() }
+            )
         }
         Column(                     // XP tracker in top-right corner
             modifier = Modifier
@@ -311,7 +335,12 @@ fun ProfileScreen() {
 @Composable
 fun DashboardPreview() {
     val fakeVm = FakeProgressViewModel()
-    DashboardScreen(navController = rememberNavController(), viewModel = fakeVm)
+
+    DashboardScreen(
+        onLogout = {},
+        navController = rememberNavController(),
+        viewModel = fakeVm
+    )
 }
 
 

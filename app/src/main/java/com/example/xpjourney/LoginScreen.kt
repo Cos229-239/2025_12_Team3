@@ -22,12 +22,15 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.runtime.LaunchedEffect
-
+import androidx.compose.ui.platform.LocalContext
+import com.example.xpjourney.data.LoginDataStore
+import com.example.xpjourney.viewmodel.LoginViewModel
 
 
 @Composable
 fun LoginScreen(
-    onLoginSuccess: () -> Unit
+    onLoginSuccess: () -> Unit,
+    loginViewModel: LoginViewModel
 ) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -105,9 +108,26 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(24.dp))
 
+            var rememberMe by remember { mutableStateOf(false) }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp)
+            ) {
+                Checkbox(
+                    checked = rememberMe,
+                    onCheckedChange = { rememberMe = it }
+                )
+                Text("Remember Me")
+            }
+
             Button(
                 onClick = {
-                    //TODO: Replace with DataStore login logic
+                    if (rememberMe) {
+                        loginViewModel.login()
+                        //TODO: DataStore login persistence
+                    }
                     onLoginSuccess()
                 },
                 modifier = Modifier
@@ -131,5 +151,11 @@ fun LoginScreen(
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen(onLoginSuccess = {})
+    val context = LocalContext.current
+    val fakeViewModel = LoginViewModel(LoginDataStore(context))
+
+    LoginScreen(
+        onLoginSuccess = {},
+        loginViewModel = fakeViewModel
+    )
     }
