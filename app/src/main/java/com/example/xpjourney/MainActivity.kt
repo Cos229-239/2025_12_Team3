@@ -58,6 +58,7 @@ import com.example.xpjourney.ui.screens.sampleEntries
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.LocalContext
 import com.example.xpjourney.data.LoginDataStore
+import com.example.xpjourney.ui.screens.EditEntryScreen
 import com.example.xpjourney.ui.screens.SplashScreen
 import com.example.xpjourney.viewmodel.LoginViewModel
 
@@ -130,6 +131,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable("entry") { JournalEntryScreen() }
+                    composable ("edit_entry") { EditEntryScreen() }
                     composable("badges") { BadgesScreen() }
                     composable("journey") { JourneyScreen() }
                     composable("profile") { ProfileScreen() }

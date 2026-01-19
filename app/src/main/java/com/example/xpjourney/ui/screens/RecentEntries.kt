@@ -15,15 +15,22 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
-import androidx.compose.ui.Alignment
 import com.example.xpjourney.ui.theme.XPJLightBlue
 import com.example.xpjourney.data.GameEntry
 import com.example.xpjourney.ui.theme.XPJBlue
 import androidx.compose.material3.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.IconButton
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.material3.Button
 
 val sampleEntries = listOf(
     GameEntry(
@@ -66,20 +73,37 @@ fun RecentEntriesScreen(
         ) {
             Text(
                 text = "Recent Entries",
-                style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.headlineLarge,
+                color = XPJBlue,
                 modifier = Modifier.padding(bottom = 12.dp)
             )
 
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier.padding(top = 8.dp)
+                modifier = Modifier.padding(top = 50.dp)
             ) {
                 items(entries) { entry ->
-                    EntryCard(entry)
+                    EntryCard(
+                        entry = entry,
+                        onEditClick = {
+                            navController?.navigate("edit_entry")
+                        })
                 }
             }
         }
+        Button(
+            onClick = { navController?.navigate("dashboard") },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.White,
+                contentColor = XPJBlue
+            ),
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .padding(24.dp)
+        ) {
+            Text("Back")
+        }
+
         FloatingActionButton(
             onClick = { navController?.navigate("add_entry") },
             containerColor = XPJBlue,
@@ -99,31 +123,55 @@ fun RecentEntriesScreen(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun RecentEntriesScreenPreview() {
-    RecentEntriesScreen(entries = sampleEntries)
-}
-
 
 @Composable
-fun EntryCard(entry: GameEntry) {
+fun EntryCard(entry: GameEntry,
+              onEditClick: () -> Unit
+) {
+    val gradient = Brush.verticalGradient(
+        colors = listOf(
+            Color(0xFF1F1F1F),
+            Color(0xFF2A2A2A)
+        )
+    )
     Card(
         shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
+        Box(
+            modifier = Modifier
+                .padding(16.dp)
+        )
         Column(modifier = Modifier.padding(16.dp)) {
-
-            // Entry Title/Game Name
-            Text(
-                text = "${entry.title} / ${entry.gameName}",
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.primary
-            )
+            //Title + Game name + Edit button
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column {
+                    Text(
+                        text = entry.title,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = XPJBlue
+                    )
+                    Text(
+                        text = entry.gameName,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = XPJBlue,
+                        modifier = Modifier.padding(top = 2.dp)
+                    )
+                }
+                IconButton(onClick = onEditClick) {
+                    Icon(
+                        imageVector = Icons.Default.Edit,
+                        contentDescription = "Edit Entry",
+                        tint = XPJBlue
+                    )
+                }
+            }
 
             Spacer(modifier = Modifier.height(4.dp))
 
@@ -132,12 +180,12 @@ fun EntryCard(entry: GameEntry) {
                 Text(
                     text = entry.date,
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = Color.Gray
                 )
                 Text(
                     text = entry.time,
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = Color.Gray
                 )
             }
 
@@ -147,8 +195,31 @@ fun EntryCard(entry: GameEntry) {
             Text(
                 text = entry.entryText,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface
+                color = Color.Black
             )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // XP badge (static for now)
+            Box(
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .background(Color(0XFF7CBB7C), RoundedCornerShape(12.dp))
+                    .padding(horizontal = 12.dp, vertical = 6.dp)
+            ) {
+                Text(
+                    text = "+15 XP",
+                    color = Color.Black,
+                    style = MaterialTheme.typography.bodySmall,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RecentEntriesScreenPreview() {
+    RecentEntriesScreen(entries = sampleEntries)
 }

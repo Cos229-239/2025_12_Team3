@@ -34,11 +34,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 
 
-
-
-
-
-
 @Entity(tableName = "journal_entries")
 data class JournalEntry(
     @PrimaryKey(autoGenerate = true)
