@@ -58,6 +58,7 @@ import com.example.xpjourney.ui.screens.sampleEntries
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.LocalContext
 import com.example.xpjourney.data.LoginDataStore
+import com.example.xpjourney.ui.screens.SplashScreen
 import com.example.xpjourney.viewmodel.LoginViewModel
 
 
@@ -96,8 +97,15 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(
                     navController = navController,
-                    startDestination = if (isLoggedIn) "dashboard" else "login"
+                    startDestination = "splash"
                 ) {
+                    composable("splash") {
+                        SplashScreen(
+                            navController = navController,
+                            isLoggedIn = isLoggedIn
+                        )
+                    }
+
                     composable("login") {
                         LoginScreen(
                         onLoginSuccess = {
