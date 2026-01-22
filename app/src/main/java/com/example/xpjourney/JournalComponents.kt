@@ -57,37 +57,11 @@ fun JournalButton(modifier: Modifier, onClick: () -> Unit, buttonLabel: String) 
     }
 }
 
-class JournalViewModel(private val repo: JournalRepository) : ViewModel() {
-    fun saveEntry(title: String, content: String) {
-        val entry = JournalEntry(title = title, body = content)
-
-        viewModelScope.launch {
-            repo.addEntry(entry)
-        }
-    }
-
-    fun fetchSteamData(appId: String) {
-        viewModelScope.launch {
-            SteamApi.fetchGameDetails(appId)
-        }
-    }
-}
-
-class JournalViewModelFactory(private val repo: JournalRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return JournalViewModel(repo) as T
-    }
-}
-
-@Composable
+/*@Composable
 fun TempJournalScreen(navController: NavController) {
-    val context = LocalContext.current
 
-    val db = remember { JournalDatabase.getDatabase(context) }
-    val repo = remember { JournalRepository(db.JournalDao()) }
-    val viewModel: JournalViewModel = viewModel(
-        factory = JournalViewModelFactory(repo)
-    )
+
+
 
     var gameName by remember {mutableStateOf("")}
     var title by remember { mutableStateOf("") }
@@ -129,11 +103,11 @@ fun TempJournalScreen(navController: NavController) {
             Row(
                 modifier = Modifier.fillMaxWidth(), Arrangement.Center
             ) {
-                JournalButton(onClick = {}, buttonLabel = "Save and Exit")
+                JournalButton(onClick = {viewModel.saveEntry(title, content)}, buttonLabel = "Save and Exit")
                 Spacer(modifier = Modifier.width(10.dp))
                 JournalButton(onClick = {}, buttonLabel = "Discard Entry")
             }
         }
     }
 
-}
+}*/

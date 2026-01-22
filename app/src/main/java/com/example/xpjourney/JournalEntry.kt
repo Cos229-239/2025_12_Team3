@@ -32,11 +32,12 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
-
-
-
-
-
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.coroutines.launch
 
 
 @Entity(tableName = "journal_entries")
@@ -48,6 +49,28 @@ data class JournalEntry(
     val timestamp: Long = System.currentTimeMillis()
 )
 
+class JournalViewModel(private val repo: JournalRepository) : ViewModel() {
+    fun saveEntry(title: String, content: String) {
+        val entry = JournalEntry(title = title, body = content)
+
+        viewModelScope.launch {
+            repo.addEntry(entry)
+        }
+    }
+
+    fun fetchSteamData(appId: String) {
+        viewModelScope.launch {
+            SteamApi.fetchGameDetails(appId)
+        }
+    }
+}
+
+class JournalViewModelFactory(private val repo: JournalRepository) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return JournalViewModel(repo) as T
+    }
+}
+
 @Composable
 fun AddEntryScreen(
     navController: NavController? = null
@@ -55,6 +78,14 @@ fun AddEntryScreen(
     var entryTitle by remember { mutableStateOf("") }
     var gameName by remember { mutableStateOf("") }
     var entryText by remember { mutableStateOf("") }
+
+    val context = LocalContext.current
+
+    val db = remember { JournalDatabase.getDatabase(context) }
+    val repo = remember { JournalRepository(db.JournalDao()) }
+    val viewModel: JournalViewModel = viewModel(
+        factory = JournalViewModelFactory(repo)
+    )
 
     Box(
         modifier = Modifier
@@ -115,7 +146,7 @@ fun AddEntryScreen(
                     )
                 )
                 Button(
-                    onClick = { },
+                    onClick = { viewModel.saveEntry(entryTitle, entryText) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 20.dp),
