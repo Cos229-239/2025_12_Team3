@@ -86,8 +86,9 @@ fun RecentEntriesScreen(
                     EntryCard(
                         entry = entry,
                         onEditClick = {
-                            navController?.navigate("edit_entry")
-                        })
+                            navController?.navigate("editEntry/${entry.id}")
+                        }
+                    )
                 }
             }
         }
@@ -204,7 +205,7 @@ fun EntryCard(entry: GameEntry,
             Box(
                 modifier = Modifier
                     .align(Alignment.End)
-                    .background(Color(0XFF7CBB7C), RoundedCornerShape(12.dp))
+                    .background(Color(0xFFFF8FA3), RoundedCornerShape(12.dp))
                     .padding(horizontal = 12.dp, vertical = 6.dp)
             ) {
                 Text(

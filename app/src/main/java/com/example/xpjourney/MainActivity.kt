@@ -55,12 +55,17 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ExitToApp
 import com.example.xpjourney.ui.screens.RecentEntriesScreen
 import com.example.xpjourney.ui.screens.sampleEntries
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.LocalContext
 import com.example.xpjourney.data.LoginDataStore
 import com.example.xpjourney.ui.screens.EditEntryScreen
 import com.example.xpjourney.ui.screens.SplashScreen
 import com.example.xpjourney.viewmodel.LoginViewModel
+import com.example.xpjourney.data.AppDatabase
+
+
+
+
+
 
 
 val android.content.Context.dataStore by preferencesDataStore(name = "user_progress")
@@ -87,6 +92,9 @@ class MainActivity : ComponentActivity() {
                 val progressViewModel: UserProgressViewModel = viewModel(factory = factory)
                 val context = LocalContext.current
                 val loginViewModel = remember { LoginViewModel(LoginDataStore(context)) }
+                val db = AppDatabase.getInstance(context)
+                val dao = db.journalDao()
+
 
                 // Observe login state as a Compose value
                 val isLoggedIn by loginViewModel.isLoggedIn.collectAsState()
@@ -94,6 +102,7 @@ class MainActivity : ComponentActivity() {
                 LaunchedEffect(Unit) {
                     progressViewModel.onLogin()
                 }
+
 
 
                 NavHost(
@@ -131,7 +140,18 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable("entry") { JournalEntryScreen() }
-                    composable ("edit_entry") { EditEntryScreen() }
+                    composable("editEntry/{entryId}") { backStackEntry ->
+                        val id = backStackEntry.arguments
+                            ?.getString("entryId")
+                            ?.toIntOrNull() ?: 0
+
+                        EditEntryScreen(
+                            entryId = id,
+                            navController = navController,
+                            dao = dao
+                        )
+                    }
+
                     composable("badges") { BadgesScreen() }
                     composable("journey") { JourneyScreen() }
                     composable("profile") { ProfileScreen() }
