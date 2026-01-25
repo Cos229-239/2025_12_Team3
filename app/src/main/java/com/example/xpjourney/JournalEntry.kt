@@ -1,5 +1,6 @@
 package com.example.xpjourney
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -38,6 +39,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 
 @Entity(tableName = "journal_entries")
@@ -48,8 +50,12 @@ data class JournalEntry(
     val body: String,
     val timestamp: Long = System.currentTimeMillis()
 )
-
 class JournalViewModel(private val repo: JournalRepository) : ViewModel() {
+    var steamGameName by mutableStateOf<String?>(null)
+        private set
+    var steamImageUrl by mutableStateOf<String?>(null)
+        private set
+
     fun saveEntry(title: String, content: String) {
         val entry = JournalEntry(title = title, body = content)
 
@@ -60,8 +66,18 @@ class JournalViewModel(private val repo: JournalRepository) : ViewModel() {
 
     fun fetchSteamData(appId: String) {
         viewModelScope.launch {
-            SteamApi.fetchGameDetails(appId)
+            //val json: String = SteamApi.fetchGameDetails(appId)
+
+            val nameRegex = """"name"\s*:\s*"([^"]+)"""".toRegex()
+            val imageRegex = """"header_image"\s*:\s*"([^"]+)"""".toRegex()
+
+            //steamGameName = nameRegex.find(json)?.groupValues?.get(1)
+            //steamImageUrl = imageRegex.find(json)?.groupValues?.get(1)
         }
+    }
+
+    fun OnButtonClick(viewModel: JournalViewModel, entryTitle: String, gameName: String, entryText: String) {
+        saveEntry(entryTitle, entryText);
     }
 }
 
@@ -70,6 +86,7 @@ class JournalViewModelFactory(private val repo: JournalRepository) : ViewModelPr
         return JournalViewModel(repo) as T
     }
 }
+
 
 @Composable
 fun AddEntryScreen(
@@ -146,7 +163,7 @@ fun AddEntryScreen(
                     )
                 )
                 Button(
-                    onClick = { viewModel.saveEntry(entryTitle, entryText) },
+                    onClick = { viewModel.OnButtonClick(viewModel, entryTitle, gameName, entryText) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 20.dp),
@@ -161,6 +178,22 @@ fun AddEntryScreen(
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
+                Button(
+                    onClick = {  },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 20.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = XPJBlue
+                    ),
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Text (
+                        text = "Search Game",
+                        color = Color.White,
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                }
                 OutlinedButton(
                     onClick = {
                         navController?.popBackStack()
@@ -171,7 +204,7 @@ fun AddEntryScreen(
                     colors = ButtonDefaults.outlinedButtonColors(
                         contentColor = XPJBlue
                     ),
-                    border = androidx.compose.foundation.BorderStroke(1.dp, XPJBlue),
+                    border = BorderStroke(1.dp, XPJBlue),
                     shape = RoundedCornerShape(12.dp)
                 ) {
                     Text(
