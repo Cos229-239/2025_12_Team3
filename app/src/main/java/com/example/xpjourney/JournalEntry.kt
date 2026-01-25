@@ -38,6 +38,7 @@ import androidx.compose.material3.OutlinedButton
 data class JournalEntry(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+    val gameName: String,
     val title: String,
     val body: String,
     val timestamp: Long = System.currentTimeMillis()

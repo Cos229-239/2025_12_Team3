@@ -23,8 +23,9 @@ class JournalViewModel(
     // Update an entry
     fun updateEntry(id: Int, newTitle: String, newBody: String) {
         viewModelScope.launch {
-            val updated = JournalEntry(
-                id = id,
+            val existing = dao.getEntryById(id) ?: return@launch
+
+            val updated = existing.copy(
                 title = newTitle,
                 body = newBody,
                 timestamp = System.currentTimeMillis()

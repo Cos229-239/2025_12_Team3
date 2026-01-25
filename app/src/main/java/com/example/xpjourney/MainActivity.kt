@@ -99,8 +99,10 @@ class MainActivity : ComponentActivity() {
                 // Observe login state as a Compose value
                 val isLoggedIn by loginViewModel.isLoggedIn.collectAsState()
 
-                LaunchedEffect(Unit) {
-                    progressViewModel.onLogin()
+                LaunchedEffect(isLoggedIn) {
+                    if (isLoggedIn) {
+                        progressViewModel.onLogin()
+                    }
                 }
 
 

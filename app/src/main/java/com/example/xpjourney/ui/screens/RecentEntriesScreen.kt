@@ -31,35 +31,37 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.material3.Button
+import com.example.xpjourney.JournalEntry
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
 
 val sampleEntries = listOf(
-    GameEntry(
+    JournalEntry(
+        id = 1,
         title = "Building Day",
         gameName = "The Sims",
-        entryText = "Had a  productive day working on building my house.",
-        date = "Jan 12, 2026",
-        time = "4:15 PM"
+        body = "Had a productive day working on building my house."
     ),
-    GameEntry(
-        title = "Barn Upgrade",
+    JournalEntry(
+        id = 2,
         gameName = "Stardew Valley",
-        entryText = "Upgraded my barn and unlocked goats!",
-        date = "Feb 21, 2026",
-        time = "7:40 PM"
+        title = "Barn Upgrade",
+        body = "Upgraded my barn and unlocked goats!"
     ),
-    GameEntry(
-        title = "Flawless Victory",
+    JournalEntry(
+        id = 3,
         gameName = "Hades",
-        entryText = "Beat Meg without taking any damage.",
-        date = "Mar 30, 2026",
-        time = "9:22 PM"
+        title = "Flawless Victory",
+        body = "Beat Meg without taking any damage."
     )
 )
 
 @Composable
 fun RecentEntriesScreen(
     navController: NavController? = null,
-    entries: List<GameEntry> = sampleEntries
+    entries: List<JournalEntry> = sampleEntries
 ) {
     Box(
         modifier = Modifier
@@ -126,9 +128,16 @@ fun RecentEntriesScreen(
 
 
 @Composable
-fun EntryCard(entry: GameEntry,
+fun EntryCard(entry: JournalEntry,
               onEditClick: () -> Unit
 ) {
+    val formattedDate = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+        .format(Date(entry.timestamp))
+
+
+    val formattedTime = SimpleDateFormat("h:mm a", Locale.getDefault())
+        .format(Date(entry.timestamp))
+
     val gradient = Brush.verticalGradient(
         colors = listOf(
             Color(0xFF1F1F1F),
@@ -179,12 +188,12 @@ fun EntryCard(entry: GameEntry,
             // Date + time row
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(
-                    text = entry.date,
+                    text = formattedDate,
                     style = MaterialTheme.typography.bodySmall,
                     color = Color.Gray
                 )
                 Text(
-                    text = entry.time,
+                    text = formattedTime,
                     style = MaterialTheme.typography.bodySmall,
                     color = Color.Gray
                 )
@@ -194,7 +203,7 @@ fun EntryCard(entry: GameEntry,
 
             // Entry text
             Text(
-                text = entry.entryText,
+                text = entry.body,
                 style = MaterialTheme.typography.bodyMedium,
                 color = Color.Black
             )
