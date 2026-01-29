@@ -40,6 +40,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import org.w3c.dom.Text
+import coil.compose.AsyncImage
 
 
 @Entity(tableName = "journal_entries")
@@ -66,13 +67,13 @@ class JournalViewModel(private val repo: JournalRepository) : ViewModel() {
 
     fun fetchSteamData(appId: String) {
         viewModelScope.launch {
-            //val json: String = SteamApi.fetchGameDetails(appId)
+            val json: String = SteamApi.fetchGameDetails(appId)
 
             val nameRegex = """"name"\s*:\s*"([^"]+)"""".toRegex()
             val imageRegex = """"header_image"\s*:\s*"([^"]+)"""".toRegex()
 
-            //steamGameName = nameRegex.find(json)?.groupValues?.get(1)
-            //steamImageUrl = imageRegex.find(json)?.groupValues?.get(1)
+            steamGameName = nameRegex.find(json)?.groupValues?.get(1)
+            steamImageUrl = imageRegex.find(json)?.groupValues?.get(1)
         }
     }
 
@@ -179,7 +180,7 @@ fun AddEntryScreen(
                     )
                 }
                 Button(
-                    onClick = {  },
+                    onClick = { viewModel.fetchSteamData(gameName) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 20.dp),
@@ -210,6 +211,13 @@ fun AddEntryScreen(
                     Text(
                         text = "Discard Entry",
                         style = MaterialTheme.typography.bodyLarge
+                    )
+                }
+                viewModel.steamImageUrl?.let { url ->
+                    AsyncImage(
+                        model = url,
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxWidth().padding(top = 12.dp)
                     )
                 }
             }
