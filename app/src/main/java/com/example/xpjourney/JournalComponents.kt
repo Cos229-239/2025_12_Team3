@@ -25,6 +25,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import kotlinx.coroutines.launch
+import android.util.Log
 
 @Composable
 fun JournalTextField(currentText: String, onTextChange: (String) -> Unit, label: String, modifier: Modifier = Modifier) {
@@ -50,17 +57,18 @@ fun JournalButton(modifier: Modifier, onClick: () -> Unit, buttonLabel: String) 
     }
 }
 
-/*class JournalRepository(private val dao: JournalDao) {
-    suspend fun insert(entry: JournalEntry) = dao.insertEntry(entry)
-    suspend fun getAll() = dao.getAllEntries()
-}
-
 class JournalViewModel(private val repo: JournalRepository) : ViewModel() {
     fun saveEntry(title: String, content: String) {
         val entry = JournalEntry(title = title, body = content)
 
         viewModelScope.launch {
-            repo.insert(entry)
+            repo.addEntry(entry)
+        }
+    }
+
+    fun fetchSteamData(appId: String) {
+        viewModelScope.launch {
+            SteamApi.fetchGameDetails(appId)
         }
     }
 }
@@ -69,17 +77,17 @@ class JournalViewModelFactory(private val repo: JournalRepository) : ViewModelPr
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return JournalViewModel(repo) as T
     }
-}*/
+}
 
 @Composable
-fun TempJournalScreen() {
+fun TempJournalScreen(navController: NavController) {
     val context = LocalContext.current
 
     val db = remember { JournalDatabase.getDatabase(context) }
     val repo = remember { JournalRepository(db.JournalDao()) }
-    /*val viewModel: JournalViewModel = viewModel(
+    val viewModel: JournalViewModel = viewModel(
         factory = JournalViewModelFactory(repo)
-    )*/
+    )
 
     var gameName by remember {mutableStateOf("")}
     var title by remember { mutableStateOf("") }
@@ -98,7 +106,7 @@ fun TempJournalScreen() {
                     label = "Enter Game Name"
                 )
                 Spacer(modifier = Modifier.width(10.dp))
-                JournalButton(onClick = {}, buttonLabel = "\uD83D\uDD0D")
+                JournalButton(onClick = {viewModel.fetchSteamData(gameName)}, buttonLabel = "\uD83D\uDD0D")
             }
 
             Box(modifier = Modifier.fillMaxWidth().padding(10.dp).background(color = Color(red = 112, green = 153, blue = 255))) {
