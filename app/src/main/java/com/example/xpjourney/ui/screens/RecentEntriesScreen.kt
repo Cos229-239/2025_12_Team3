@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
 import com.example.xpjourney.ui.theme.XPJLightBlue
-import com.example.xpjourney.data.GameEntry
 import com.example.xpjourney.ui.theme.XPJBlue
 import androidx.compose.material3.Icon
 import androidx.compose.material.icons.Icons
@@ -138,12 +137,6 @@ fun EntryCard(entry: JournalEntry,
     val formattedTime = SimpleDateFormat("h:mm a", Locale.getDefault())
         .format(Date(entry.timestamp))
 
-    val gradient = Brush.verticalGradient(
-        colors = listOf(
-            Color(0xFF1F1F1F),
-            Color(0xFF2A2A2A)
-        )
-    )
     Card(
         shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
