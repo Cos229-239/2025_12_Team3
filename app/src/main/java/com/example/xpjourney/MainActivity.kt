@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -13,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.xpjourney.ui.theme.XPJourneyTheme
-import androidx.compose.material.icons.Icons
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
@@ -22,6 +22,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.NavController
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.graphics.Color
@@ -32,6 +34,8 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -52,10 +56,19 @@ import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Search
 import com.example.xpjourney.ui.theme.XPJBlue
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.List
 import com.example.xpjourney.ui.screens.RecentEntriesScreen
 import com.example.xpjourney.ui.screens.sampleEntries
 import androidx.compose.runtime.mutableStateOf
-
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.PaintingStyle.Companion.Stroke
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.text.style.TextAlign
+import com.example.xpjourney.ui.theme.Badge
+import com.example.xpjourney.ui.theme.BadgeManager
+import com.example.xpjourney.ui.theme.ChallengesScreen
+import com.example.xpjourney.ui.theme.DarkBlueText
 
 
 val android.content.Context.dataStore by preferencesDataStore(name = "user_progress")
@@ -103,9 +116,10 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("dashboard") { DashboardScreen( navController, progressViewModel) }
                     composable("entry") { JournalEntryScreen() }
-                    composable("badges") { BadgesScreen() }
+                    composable("badges") { BadgesScreen(navController) }
                     composable("journey") { JourneyScreen() }
                     composable("profile") { ProfileScreen() }
+                    composable("challenges") { ChallengesScreen(navController) }
                     composable("recent_entries") {
                         RecentEntriesScreen(
                             navController = navController,
@@ -239,19 +253,6 @@ fun JournalEntryScreen() {
 }
 
 @Composable
-fun BadgesScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text("Badges Screen")
-    }
-}
-
-@Composable
 fun JourneyScreen() {
     Column(
         modifier = Modifier
@@ -274,7 +275,7 @@ fun XPJButton(
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
-            containerColor = XPJBlue,
+            containerColor = XPJAccentPink,
             contentColor = MaterialTheme.colorScheme.onPrimary
         ),
         shape = RoundedCornerShape(12.dp),
@@ -306,25 +307,6 @@ fun ProfileScreen() {
 }
 
 
-@SuppressLint("ViewModelConstructor")
-@Preview(showBackground = true)
-@Composable
-fun DashboardPreview() {
-    val fakeVm = FakeProgressViewModel()
-    DashboardScreen(navController = rememberNavController(), viewModel = fakeVm)
-}
-
-
-class FakeProgressViewModel : ViewModel(), ProgressViewModelContract {
-    override val progressState = MutableStateFlow(
-        ProgressRepository.Progress(
-            lastLoginDate = LocalDate.now(),
-            currentStreak = 5,
-            xp = 42
-        )
-    )
-}
-
 @Composable
 fun BadgesScreen(navController: NavController) {
     Column(
@@ -340,11 +322,11 @@ fun BadgesScreen(navController: NavController) {
             fontWeight = FontWeight.Bold,
             color = DarkBlueText,
             style = TextStyle(
-                shadow = TextStyleShadow(
+                /*shadow = TextStyleShadow(
                     color = Color.Black.copy(alpha = 0.5f),
                     offset = Offset(2f, 2f),
                     blurRadius = 3f
-                )
+                )*/
             ),
             modifier = Modifier.padding(bottom = 8.dp)
         )
@@ -374,7 +356,7 @@ fun BadgesScreen(navController: NavController) {
             colors = ButtonDefaults.outlinedButtonColors(contentColor = DarkBlueText),
             border = androidx.compose.foundation.BorderStroke(1.dp, DarkBlueText)
         ) {
-            Icon(Icons.Default.List, contentDescription = null)
+            Icon(Icons.AutoMirrored.Filled.List, contentDescription = null)
             Spacer(Modifier.width(8.dp))
             Text("View All Challenges")
         }
