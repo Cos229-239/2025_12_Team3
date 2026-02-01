@@ -2,6 +2,12 @@ package com.example.xpjourney.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+val PrimaryBlue = Color(0xFFABC4FF)
+val ButtonPink = Color(0xFFFFD1DC)
+val DarkBlueText = Color(0xFF1A237E)
+val IconCircleColor = Color(0xFFE3F2FD)
+val Shadow = Color(0x80000000)
+
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)
