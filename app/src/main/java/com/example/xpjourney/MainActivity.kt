@@ -5,7 +5,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -13,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.xpjourney.ui.theme.XPJourneyTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material.icons.Icons
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.sp
@@ -20,10 +25,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.NavController
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Directions
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.graphics.Color
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
@@ -32,33 +37,10 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.xpjourney.data.ProgressRepository
 import com.example.xpjourney.ui.theme.Poppins
-import com.example.xpjourney.ui.theme.XPJAccentPink
-import com.example.xpjourney.viewmodel.ProgressViewModelContract
-import com.example.xpjourney.viewmodel.UserProgressViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import java.time.LocalDate
-import androidx.compose.material.icons.filled.History
-import androidx.compose.material.icons.filled.Search
 import com.example.xpjourney.ui.theme.XPJBlue
-import androidx.compose.material.icons.filled.Add
-import com.example.xpjourney.ui.screens.RecentEntriesScreen
-import com.example.xpjourney.ui.screens.sampleEntries
-import androidx.compose.runtime.mutableStateOf
-
-
-
-val android.content.Context.dataStore by preferencesDataStore(name = "user_progress")
 
 
 class MainActivity : ComponentActivity() {
@@ -79,41 +61,16 @@ class MainActivity : ComponentActivity() {
 
             XPJourneyTheme {
                 val navController = rememberNavController()
-                val progressViewModel: UserProgressViewModel = viewModel(factory = factory)
-
-                LaunchedEffect(Unit) {
-                    progressViewModel.onLogin()
-                }
-                var isLoggedIn by remember { mutableStateOf(false) }
-
-
-                NavHost(
-                    navController = navController,
-                    startDestination = if (isLoggedIn) "dashboard" else "login"
-                ) {
-                    composable("login") {
-                        LoginScreen(
-                            onLoginSuccess = {
-                                isLoggedIn = true
-                                navController.navigate("dashboard") {
-                                    popUpTo("login") { inclusive = true }
-                                }
-                            }
-                        )
-                    }
-                    composable("dashboard") { DashboardScreen( navController, progressViewModel) }
-                    composable("entry") { JournalEntryScreen() }
-                    composable("badges") { BadgesScreen() }
+                NavHost(navController = navController, startDestination = "login") {
+                    composable("login") { LoginScreen(navController) }
+                    composable("register") { DetailedSignUpScreen(navController) }
+                    composable("forgot") { ForgotPasswordScreen(navController) }
+                    composable("dashboard") { DashboardScreen(navController) }
+                    composable("entry") { TempJournalScreen(navController) }
+                    composable("badges") { BadgesScreen(navController) }
                     composable("journey") { JourneyScreen() }
-                    composable("profile") { ProfileScreen() }
-                    composable("recent_entries") {
-                        RecentEntriesScreen(
-                            navController = navController,
-                            entries = sampleEntries
-                        ) }
-                    composable("add_entry") {
-                        AddEntryScreen(navController = navController)
-                    }
+                    composable("challenges") { ChallengesScreen(navController) }
+                    composable("journey") { JourneyScreen() }
                 }
             }
         }
@@ -121,17 +78,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun DashboardScreen(
-    navController: NavController,
-    viewModel: ProgressViewModelContract
-) {
-    val progressState = viewModel.progressState.collectAsState()
-
-    Column {
-        Text("🔥Login Streak: ${progressState.value.currentStreak} days")
-        Text("XP: ${progressState.value.xp}")
-    }
-
+fun DashboardScreen(navController: NavController) {
     var xp by remember { mutableIntStateOf(120) }
     val xpGoal = 200
     val progress = xp.toFloat() / xpGoal.toFloat()
@@ -145,7 +92,7 @@ fun DashboardScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(10.dp),
+                .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -153,90 +100,53 @@ fun DashboardScreen(
             Image(
                 painter = painterResource(id = R.drawable.xpj_logo),
                 contentDescription = "XPJ Logo",
-                modifier = Modifier.size(125.dp)
+                modifier = Modifier.size(96.dp)
             )
             // Tagline text
             Text(
-                text = "Your story, your progress, your XP journey.",
-                style = TextStyle(
-                    fontFamily = Poppins,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Medium
-                ),
-                modifier = Modifier.padding(top = 0.dp)
-            )
-            // Streak
-            Text(
-                text = "🔥Current Streak: ${progressState.value.currentStreak} days",
+                text = "Your story, your progress, your XPJourney.",
                 style = TextStyle(
                     fontFamily = Poppins,
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.Normal
                 ),
-                modifier = Modifier.padding(top = 4.dp)
+                modifier = Modifier.padding(top = 2.dp)
             )
-             // Buttons
-            XPJButton("View Recent Entries", Icons.Filled.History, onClick = {
-                navController.navigate("recent_entries")
+            XPJButton("Add Entry", Icons.Filled.Add, onClick = {
+                xp += 10
+                navController.navigate("entry")
             })
             XPJButton("View Badges", Icons.Filled.Star, onClick = {
                 navController.navigate("badges")
             })
-            XPJButton("Search Games", Icons.Filled.Search, onClick = {
+            XPJButton("Start Journey", Icons.Filled.Directions, onClick = {
                 navController.navigate("journey")
             })
-            XPJButton("View Profile", Icons.Filled.Person, onClick = {
-                navController.navigate("profile")
-        })
 
         }
         Column(                     // XP tracker in top-right corner
             modifier = Modifier
                 .align(Alignment.TopEnd)
-                .padding(top = 25.dp, end = 16.dp),
+                .padding(top = 48.dp, end = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Box(contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(
-                    progress = progress,
-                    modifier = Modifier.size(95.dp),
+                    progress = { progress },
+                    modifier = Modifier.size(80.dp),
                     color = MaterialTheme.colorScheme.primary,
                     trackColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.2f),
-                    strokeWidth = 9.dp
+                    strokeWidth = 6.dp
                 )
             }
             Text("XP: $xp/$xpGoal", fontSize = 12.sp)
         }
-        FloatingActionButton(
-            onClick = { navController.navigate("add_entry") },
-            containerColor = XPJBlue,
-            contentColor = Color.White,
-            modifier = Modifier
-                .size(94.dp)
-                .align(Alignment.BottomEnd)
-                .padding(24.dp),
-            shape = CircleShape
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Add,
-                contentDescription = "Add Entry",
-                modifier = Modifier.size(48.dp)
-            )
-        }
     }
 }
-@Composable
+/*@Composable
 fun JournalEntryScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text("Journal Entry Screen")
-    }
-}
+    TempJournalScreen()
+}*/
 
 @Composable
 fun BadgesScreen() {
@@ -274,12 +184,12 @@ fun XPJButton(
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
-            containerColor = XPJAccentPink,
-            contentColor = Color.White
+            containerColor = XPJBlue,
+            contentColor = MaterialTheme.colorScheme.onPrimary
         ),
         shape = RoundedCornerShape(12.dp),
         elevation = ButtonDefaults.buttonElevation(
-            defaultElevation = 5.dp,
+            defaultElevation = 4.dp,
             pressedElevation = 8.dp
         ),
         modifier = modifier
@@ -310,17 +220,9 @@ fun ProfileScreen() {
 @Preview(showBackground = true)
 @Composable
 fun DashboardPreview() {
-    val fakeVm = FakeProgressViewModel()
-    DashboardScreen(navController = rememberNavController(), viewModel = fakeVm)
+    XPJourneyTheme {
+        val navController = rememberNavController()
+        DashboardScreen(navController)
+    }
 }
 
-
-class FakeProgressViewModel : ViewModel(), ProgressViewModelContract {
-    override val progressState = MutableStateFlow(
-        ProgressRepository.Progress(
-            lastLoginDate = LocalDate.now(),
-            currentStreak = 5,
-            xp = 42
-        )
-    )
-}
