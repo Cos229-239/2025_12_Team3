@@ -20,6 +20,18 @@ class JournalViewModel(
         return dao.getEntryById(id)
     }
 
+    // Create a new entry
+    fun saveEntry(gameName: String, title: String, body: String) {
+        viewModelScope.launch {
+            val entry = JournalEntry(
+                gameName = gameName,
+                title = title,
+                body = body
+            )
+            dao.insertEntry(entry)
+        }
+    }
+
     // Update an entry
     fun updateEntry(id: Int, newTitle: String, newBody: String) {
         viewModelScope.launch {

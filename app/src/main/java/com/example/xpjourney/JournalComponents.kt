@@ -58,13 +58,18 @@ fun JournalButton(modifier: Modifier, onClick: () -> Unit, buttonLabel: String) 
 }
 
 class JournalViewModel(private val repo: JournalRepository) : ViewModel() {
-    fun saveEntry(title: String, content: String) {
-        val entry = JournalEntry(title = title, body = content)
+    fun saveEntry(gameName: String, title: String, content: String) {
+        val entry = JournalEntry(
+            gameName = gameName,
+            title = title,
+            body = content
+        )
 
         viewModelScope.launch {
             repo.addEntry(entry)
         }
     }
+
 
     fun fetchSteamData(appId: String) {
         viewModelScope.launch {
@@ -129,7 +134,17 @@ fun TempJournalScreen(navController: NavController) {
             Row(
                 modifier = Modifier.fillMaxWidth(), Arrangement.Center
             ) {
-                JournalButton(onClick = {}, buttonLabel = "Save and Exit")
+                JournalButton(
+                    onClick = {
+                        viewModel.saveEntry(
+                            gameName = gameName,
+                            title = title,
+                            content = content
+                        )
+                        navController.popBackStack()
+                    },
+                    buttonLabel = "Save and Exit"
+                )
                 Spacer(modifier = Modifier.width(10.dp))
                 JournalButton(onClick = {}, buttonLabel = "Discard Entry")
             }
